@@ -69,11 +69,11 @@
 			};
 
 			this.getSettingsHtml = function() {
-				return '<ul class="left">' +
+				return '<ul style="left: 20px;position: absolute;top: 15px;margin: 0;padding: 0;width: 50%;list-style-type: none;font-size: 16px;">' +
 					'<li>Features:</li>' +
 					'<li><label><input type="checkbox" name="featureAutoWoot" data-greendj-settings> AutoWoot</label></li>' +
 					'</ul>' +
-					'<ul class="right">' +
+					'<ul style="right: -5px;position: absolute;top: 15px;margin: 0;padding: 0;width: 50%;list-style-type: none;font-size: 16px;">' +
 					'<li>Messages:</li>' +
 					'<li><label><input type="checkbox" name="messagesWoot" data-greendj-settings> Woot</label></li>' +
 					'<li><label><input type="checkbox" name="messagesGrab" data-greendj-settings> Grab</label></li>' +
