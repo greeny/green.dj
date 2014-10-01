@@ -10,6 +10,8 @@
 	if(typeof window.greenDj === 'undefined') {
 		function GreenDjObject() {
 			this.API = API;
+			this.version = '1.0.0';
+
 			var that = this;
 
 			/* EVENTS */
@@ -35,6 +37,7 @@
 			this.woot = function() {
 				setTimeout(function() {
 					$('#woot').click();
+
 				}, 2000);
 			};
 
@@ -50,14 +53,23 @@
 				}, 2000);
 			};
 
+			this.info = function(message, required) {
+				if(message) {
+					if(!(required && this.getSettings()[required])) {
+						this.API.chatLog(message);
+					}
+				}
+			};
+
 			/* SETTINGS */
 
-			this.initSettings = function() {
+			this.init = function() {
 				$('#chat-header').find('.divider').after('<div class="chat-header-button" style="margin-left: 13px; margin-right: 0;" onclick="greenDj.onSettingsClick()"><i class="icon icon-settings-white"></i></div>');
 				$('body [data-greendj-settings]').on('click', function(e) {
 					e.preventDefault();
 					that.onSettingsChange($(this));
 				});
+				this.info('green.dj version ' + this.version + ' loaded. Enjoy!');
 			};
 
 			this.onSettingsClick = function() {
@@ -70,6 +82,12 @@
 
 			this.onSettingsChange = function(el) {
 
+			};
+
+			this.getSettings = function() {
+				return {
+
+				};
 			};
 
 			this.closeSettingsDialog = function() {
@@ -91,7 +109,7 @@
 					'</ul>';
 			};
 
-			this.initSettings();
+			this.init();
 		}
 		window.greenDj = new GreenDjObject();
 	}
