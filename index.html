@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>green.dj - plug.dj plugin</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<a href="" class="navbar-brand">green.dj</a>
+		</div>
+	</nav>
+
+	<div class="container" style="margin-top: 70px;">
+		<ul class="nav nav-tabs nav-justified" style="margin-bottom: 15px;">
+			<li class="active">
+				<a href="#stable" data-toggle="tab">Stable builds</a>
+			</li>
+			<li>
+				<a href="#dev" data-toggle="tab">Development builds</a>
+			</li>
+			<li>
+				<a href="#master" data-toggle="tab">Newest builds</a>
+			</li>
+			<li>
+				<a href="#faq" data-toggle="tab">FAQ</a>
+			</li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane active" id="stable">
+				<div class="alert alert-success">
+					<b>Stable</b> builds are safe to use and should not contain any bugs and/or broken features.
+				</div>
+
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Bookmark</th>
+							<th>Changelog</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><a href="javascript:(function(){$.getScript('src/green.dj.js');})()" class="btn btn-success">green.dj v.1.0.0</a></td>
+							<td>
+								Released first version of script
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="tab-pane" id="dev">
+				<div class="alert alert-warning">
+					<b>Development</b> builds can be used, but may contain bugs. They are used for testing new features.
+				</div>
+
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Bookmark</th>
+							<th>Changelog</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><a href="javascript:(function(){$.getScript('/green.dj.js');})()" class="btn btn-warning">green.dj v.1.0.0</a></td>
+							<td>
+								Released first version of script
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="tab-pane" id="master">
+				<div class="alert alert-danger">
+					<b>Newest</b> builds should not be used, they may contain bugs and not finished features. Recommended only for advanced users.
+				</div>
+
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Bookmark</th>
+							<th>Info</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><a href="javascript:(function(){$.getScript('https://github.com/greeny/green.dj/tree/master/src/green.dj.js');})()" class="btn btn-danger">green.dj at master</a></td>
+							<td>
+								Uses newest version all the time. With all new features, but also with all new bugs.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="tab-pane" id="faq">
+				<div class="alert alert-info">
+					This page contains information about green.dj.
+				</div>
+				<dl>
+					<dt>How can I use green.dj?</dt>
+					<dd>
+						It is simple. Just click 'Stable builds' tab, find newest version (probably the first one) and drag the button to your bookmark bar. When at plug.dj, simply click that bookmark.
+					</dd>
+
+					<dt>I don't have my bookmark bar.</dt>
+					<dd>
+						Try using Ctrl+Shift+B. If it doesn't help, try searching through browser settings.
+					</dd>
+				</dl>
+				<p>Do you have another question? Send it to greenyaptec<!--X-->@<!--s-->gmail.com</p>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
