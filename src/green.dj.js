@@ -57,7 +57,7 @@
 			};
 
 			this.onSettingsClick = function() {
-				$('#dialog-container').html('<div class="dialog" id="green_dj_settings_dialog">' +
+				$('#dialog-container').html('<div class="dialog" id="green_dj_settings_dialog" style="height: 500px;">' +
 					'<div class="dialog-frame"><span class="title">green.dj settings</span><i class="icon icon-dialog-close" onclick="greenDj.closeSettingsDialog()"></i></div>' +
 					'<div class="dialog-body">' + this.getSettingsHtml() + '</div>' +
 					'<div class="dialog-frame"><div class="button cancel"><span>Export</span></div><div class="button submit" onclick="greenDj.closeSettingsDialog()"><span>OK</span></div></div>' +
