@@ -57,17 +57,22 @@
 			};
 
 			this.onSettingsClick = function() {
-				var $container = $('#dialog-container');
-				$container.html('<div class="dialog">' +
-					'<div class="dialog-frame"><span class="title">green.dj settings</span><i class="icon icon-dialog-close"></i></div>' +
+				$('#dialog-container').html('<div class="dialog" id="green_dj_settings_dialog">' +
+					'<div class="dialog-frame"><span class="title">green.dj settings</span><i class="icon icon-dialog-close" onclick="greenDj.closeSettingsDialog()"></i></div>' +
 					'<div class="dialog-body">' + this.getSettingsHtml() + '</div>' +
-					'<div class="dialog-frame"><div class="button submit"><span>OK</span></div></div>' +
-					'</div>');
-				$container.show();
+					'<div class="dialog-frame"><div class="button cancel"><span>Export</span></div><div class="button submit" onclick="greenDj.closeSettingsDialog()"><span>OK</span></div></div>' +
+					'</div>').show();
+			};
+
+			this.closeSettingsDialog = function() {
+				$('#dialog-container').html('').hide();
 			};
 
 			this.getSettingsHtml = function() {
-				return "Hello world";
+				return '<ul class="left">' +
+					'<li>Features:</li>' +
+					'<li><label><input type="checkbox" name="featureAutoWoot" data-greendj-settings> AutoWoot</label></li>' +
+					'</ul>';
 			};
 
 			this.initSettingsButton();
