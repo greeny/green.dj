@@ -12,6 +12,8 @@
 			this.API = API;
 			var that = this;
 
+			/* EVENTS */
+
 			this.API.on(API.ADVANCE, function(data) {
 				that.onAdvance('advance', data);
 			});
@@ -24,9 +26,10 @@
 				that.onAdvance('forceSkip', data);
 			});
 
+			/* FUNCTIONALITY */
 
 			this.onAdvance = function(reason, data) {
-				this.woot();
+				//this.woot();
 			};
 
 			this.woot = function() {
@@ -34,6 +37,26 @@
 					$('#woot').click();
 				}, 2000);
 			};
+
+			this.grab = function() {
+				setTimeout(function() {
+					$('#grab').click();
+				}, 2000);
+			};
+
+			this.meh = function() {
+				setTimeout(function() {
+					$('#meh').click();
+				}, 2000);
+			};
+
+			/* SETTINGS */
+
+			this.initSettingsButton = function() {
+				$('#room-bar').css({'left': '+=53', 'width': '-=53'});
+			};
+
+			this.initSettingsButton();
 		}
 		window.greenDj = new GreenDjObject();
 	}
