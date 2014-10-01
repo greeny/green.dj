@@ -52,16 +52,24 @@
 
 			/* SETTINGS */
 
-			this.initSettingsButton = function() {
+			this.initSettings = function() {
 				$('#chat-header').find('.divider').after('<div class="chat-header-button" style="margin-left: 13px; margin-right: 0;" onclick="greenDj.onSettingsClick()"><i class="icon icon-settings-white"></i></div>');
+				$('body [data-greendj-settings]').on('click', function(e) {
+					e.preventDefault();
+					that.onSettingsChange($(this));
+				});
 			};
 
 			this.onSettingsClick = function() {
 				$('#dialog-container').html('<div class="dialog" id="green_dj_settings_dialog" style="height: 500px;">' +
 					'<div class="dialog-frame"><span class="title">green.dj settings</span><i class="icon icon-dialog-close" onclick="greenDj.closeSettingsDialog()"></i></div>' +
-					'<div class="dialog-body">' + this.getSettingsHtml() + '</div>' +
+					'<div class="dialog-body" style="height: 390px;text-align: left;">' + this.getSettingsHtml() + '</div>' +
 					'<div class="dialog-frame"><div class="button cancel"><span>Export</span></div><div class="button submit" onclick="greenDj.closeSettingsDialog()"><span>OK</span></div></div>' +
 					'</div>').show();
+			};
+
+			this.onSettingsChange = function(el) {
+
 			};
 
 			this.closeSettingsDialog = function() {
@@ -70,11 +78,11 @@
 
 			this.getSettingsHtml = function() {
 				return '<ul style="left: 20px;position: absolute;top: 15px;margin: 0;padding: 0;width: 50%;list-style-type: none;font-size: 16px;">' +
-					'<li>Features:</li>' +
+					'<li style="font-weight: bold;">Features:</li>' +
 					'<li><label><input type="checkbox" name="featureAutoWoot" data-greendj-settings> AutoWoot</label></li>' +
 					'</ul>' +
 					'<ul style="right: -5px;position: absolute;top: 15px;margin: 0;padding: 0;width: 50%;list-style-type: none;font-size: 16px;">' +
-					'<li>Messages:</li>' +
+					'<li style="font-weight: bold;">Messages:</li>' +
 					'<li><label><input type="checkbox" name="messagesWoot" data-greendj-settings> Woot</label></li>' +
 					'<li><label><input type="checkbox" name="messagesGrab" data-greendj-settings> Grab</label></li>' +
 					'<li><label><input type="checkbox" name="messagesMeh" data-greendj-settings> Meh</label></li>' +
@@ -83,7 +91,7 @@
 					'</ul>';
 			};
 
-			this.initSettingsButton();
+			this.initSettings();
 		}
 		window.greenDj = new GreenDjObject();
 	}
