@@ -72,6 +72,14 @@
 				return '<ul class="left">' +
 					'<li>Features:</li>' +
 					'<li><label><input type="checkbox" name="featureAutoWoot" data-greendj-settings> AutoWoot</label></li>' +
+					'</ul>' +
+					'<ul class="right">' +
+					'<li>Messages:</li>' +
+					'<li><label><input type="checkbox" name="messagesWoot" data-greendj-settings> Woot</label></li>' +
+					'<li><label><input type="checkbox" name="messagesGrab" data-greendj-settings> Grab</label></li>' +
+					'<li><label><input type="checkbox" name="messagesMeh" data-greendj-settings> Meh</label></li>' +
+					'<li><label><input type="checkbox" name="messagesLogin" data-greendj-settings> Login</label></li>' +
+					'<li><label><input type="checkbox" name="messagesLogout" data-greendj-settings> Logout</label></li>' +
 					'</ul>';
 			};
 
