@@ -58,7 +58,7 @@
 			this.info = function(message, required) {
 				if(message) {
 					if(!(required && this.messageEnabled(required))) {
-						this.API.chatLog('[<span style="color: green">green.dj</span>] ' + message);
+						$("#chat-messages").append('<div class="message" style="padding-left: 25px;border-left: green 3px solid;">[<span style="color: green">green.dj</span>] ' + message + '</div>');
 					}
 				}
 			};
@@ -67,7 +67,7 @@
 
 			this.init = function() {
 				$('#chat-header').find('.divider').after('<div class="chat-header-button" style="margin-left: 13px; margin-right: 0;" onclick="greenDj.onSettingsClick()"><i class="icon icon-settings-white"></i></div>');
-				$('body [data-greendj-settings]').on('click', function(e) {
+				$('body [data-greendj-settings]').on('change', function(e) {
 					e.preventDefault();
 					that.onSettingsChange($(this));
 				});
@@ -102,6 +102,7 @@
 			this.messageEnabled = function(key) {
 				var s = this.getSettings();
 				if(!s.messages) {
+					s.messages = {};
 					return false;
 				}
 				return s.messages[key];
@@ -110,6 +111,7 @@
 			this.featureEnabled = function(key) {
 				var s = this.getSettings();
 				if(!s.features) {
+					s.features = {};
 					return false;
 				}
 				return s.features[key];
