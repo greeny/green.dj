@@ -92,7 +92,10 @@
 			this.info = function(message, required) {
 				/*if(message) {
 					if(!(required && this.messageEnabled(required))) {*/
-						var $el = $('<div class="message deletable" style="padding-left: 25px;border-left: green 3px solid;"><div class="delete-button" style="display: none;">Delete</div>[<span style="color: green">green.dj</span>] ' + message + '</div>');
+						var $el = $('<div class="message deletable" style="padding-left: 25px;border-left: green 3px solid;" onmouseover="$(this).find(\'.delete-button\').show();" onmouseout="$(this).find(\'.delete-button\').hide();">' +
+							'<div class="delete-button" style="display: none;" onclick="$(this).parent().remove()">Delete</div>' +
+							'[<span style="color: green">green.dj</span>] ' + message + '' +
+							'</div>');
 						var $chat = $("#chat-messages");
 						$chat.append($el);
 						$chat.scrollTop($chat.scrollTop() + $el.outerHeight(true));
