@@ -30,7 +30,7 @@
 			});
 
 			this.API.on(API.GRAB_UPDATE, function(user) {
-				that.onGrab(user);
+				that.onGrab(user.user);
 			});
 
 			this.API.on(API.ADVANCE, function(data) {
@@ -67,7 +67,7 @@
 
 			this.onAdvance = function(reason, data) {
 				if(this.featureEnabled('autoWoot')) {
-					this.woot();
+					/*this.woot();*/
 				}
 			};
 
@@ -92,7 +92,7 @@
 			this.info = function(message, required) {
 				/*if(message) {
 					if(!(required && this.messageEnabled(required))) {*/
-						var $el = $('<div class="message" style="padding-left: 25px;border-left: green 3px solid;">[<span style="color: green">green.dj</span>] ' + message + '</div>');
+						var $el = $('<div class="message deletable" style="padding-left: 25px;border-left: green 3px solid;"><div class="delete-button" style="display: none;">Delete</div>[<span style="color: green">green.dj</span>] ' + message + '</div>');
 						var $chat = $("#chat-messages");
 						$chat.append($el);
 						$chat.scrollTop($chat.scrollTop() + $el.outerHeight(true));
