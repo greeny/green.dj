@@ -56,6 +56,7 @@
 			};
 
 			this.onUserVote = function(user, vote) {
+				console.log(vote);
 				this.info(user.username + ' had ' + (vote === 1 ? '<span style="color: #90ad2f">Woot!</span>ed' : '<span style="color: #c42e3b;">Meh!</span>ed') + ' this song!', 'userVote');
 			};
 
