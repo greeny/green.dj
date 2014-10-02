@@ -11,6 +11,7 @@
 		function GreenDjObject() {
 			this.API = API;
 			this.version = '1.0.0';
+			this.settings = {};
 
 			var that = this;
 
@@ -31,13 +32,14 @@
 			/* FUNCTIONALITY */
 
 			this.onAdvance = function(reason, data) {
-				//this.woot();
+				if(this.featureEnabled('autoWoot')) {
+					this.woot();
+				}
 			};
 
 			this.woot = function() {
 				setTimeout(function() {
 					$('#woot').click();
-
 				}, 2000);
 			};
 
@@ -55,8 +57,8 @@
 
 			this.info = function(message, required) {
 				if(message) {
-					if(!(required && this.getSettings()[required])) {
-						this.API.chatLog(message);
+					if(!(required && this.messageEnabled(required))) {
+						this.API.chatLog('[<span style="color: green">green.dj</span>] ' + message);
 					}
 				}
 			};
@@ -69,6 +71,18 @@
 					e.preventDefault();
 					that.onSettingsChange($(this));
 				});
+				if(typeof Storage === 'undefined') {
+					this.info('green.dj cannot be loaded, because your browser does not support localStorage.');
+					return;
+				}
+				var data = localStorage.getItem('green.dj');
+				if(data) {
+					this.settings = JSON.parse(data);
+				} else {
+					this.settings = {};
+				}
+
+
 				this.info('green.dj version ' + this.version + ' loaded. Enjoy!');
 			};
 
@@ -81,13 +95,28 @@
 			};
 
 			this.onSettingsChange = function(el) {
+				this.settings[el.data('greendj-settings')][el.attr('name')] = el.val();
+				localStorage.setItem('green.dj', JSON.stringify(this.settings));
+			};
 
+			this.messageEnabled = function(key) {
+				var s = this.getSettings();
+				if(!s.messages) {
+					return false;
+				}
+				return s.messages[key];
+			};
+
+			this.featureEnabled = function(key) {
+				var s = this.getSettings();
+				if(!s.features) {
+					return false;
+				}
+				return s.features[key];
 			};
 
 			this.getSettings = function() {
-				return {
-
-				};
+				return this.settings;
 			};
 
 			this.closeSettingsDialog = function() {
@@ -97,20 +126,22 @@
 			this.getSettingsHtml = function() {
 				return '<ul style="left: 20px;position: absolute;top: 15px;margin: 0;padding: 0;width: 50%;list-style-type: none;font-size: 16px;">' +
 					'<li style="font-weight: bold;">Features:</li>' +
-					'<li><label><input type="checkbox" name="featureAutoWoot" data-greendj-settings> AutoWoot</label></li>' +
+					'<li><label><input type="checkbox" name="autoWoot" data-greendj-settings="features"> AutoWoot</label></li>' +
 					'</ul>' +
 					'<ul style="right: -5px;position: absolute;top: 15px;margin: 0;padding: 0;width: 50%;list-style-type: none;font-size: 16px;">' +
 					'<li style="font-weight: bold;">Messages:</li>' +
-					'<li><label><input type="checkbox" name="messagesWoot" data-greendj-settings> Woot</label></li>' +
-					'<li><label><input type="checkbox" name="messagesGrab" data-greendj-settings> Grab</label></li>' +
-					'<li><label><input type="checkbox" name="messagesMeh" data-greendj-settings> Meh</label></li>' +
-					'<li><label><input type="checkbox" name="messagesLogin" data-greendj-settings> Login</label></li>' +
-					'<li><label><input type="checkbox" name="messagesLogout" data-greendj-settings> Logout</label></li>' +
+					'<li><label><input type="checkbox" name="woot" data-greendj-settings="messages"> Woot</label></li>' +
+					'<li><label><input type="checkbox" name="grab" data-greendj-settings="messages"> Grab</label></li>' +
+					'<li><label><input type="checkbox" name="meh" data-greendj-settings="messages"> Meh</label></li>' +
+					'<li><label><input type="checkbox" name="login" data-greendj-settings="messages"> Login</label></li>' +
+					'<li><label><input type="checkbox" name="logout" data-greendj-settings="messages"> Logout</label></li>' +
 					'</ul>';
 			};
 
 			this.init();
 		}
 		window.greenDj = new GreenDjObject();
+	} else {
+		greenDj.info('Already loaded!');
 	}
 })();
