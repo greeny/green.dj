@@ -17,6 +17,18 @@
 
 			/* EVENTS */
 
+			this.API.on(API.USER_JOIN, function(user) {
+				that.onUserJoin(user);
+			});
+
+			this.API.on(API.USER_LEFT, function(user) {
+				that.onUserLeave(user);
+			});
+
+			this.API.on(API.VOTE_UPDATE, function(user, vote) {
+				that.onUserVote(user, vote);
+			});
+
 			this.API.on(API.ADVANCE, function(data) {
 				that.onAdvance('advance', data);
 			});
@@ -30,6 +42,18 @@
 			});
 
 			/* FUNCTIONALITY */
+
+			this.onUserJoin = function(user) {
+				this.info(user.username + ' has joined the room.', 'userJoin');
+			};
+
+			this.onUserLeave = function(user) {
+				this.info(user.username + ' has left the room.', 'userLeave');
+			};
+
+			this.onUserVote = function(user, vote) {
+				this.info(user.username + ' has ' + vote === 1 ? 'wooted' : 'mehed' + ' your song!', 'vote');
+			};
 
 			this.onAdvance = function(reason, data) {
 				if(this.featureEnabled('autoWoot')) {
@@ -97,7 +121,15 @@
 			};
 
 			this.onSettingsChange = function(el) {
-				this.settings[el.data('greendj-settings')][el.attr('name')] = el.val();
+				var s = this.getSettings(), key = el.data('greendj-settings'), val = el.attr('name'), checked = el.val();
+				if(!s[key]) {
+					s[key] = {};
+				}
+				if(!s[key][val]) {
+					s[key][val] = false;
+				}
+				this.settings[key][val] = !this.settings[key][val];
+				el.val(this.settings[key][val]);
 				localStorage.setItem('green.dj', JSON.stringify(this.settings));
 			};
 
@@ -107,6 +139,9 @@
 					s.messages = {};
 					return false;
 				}
+				if(!s.messages[key]) {
+					s.messages[key] = true;
+				}
 				return s.messages[key];
 			};
 
@@ -115,6 +150,9 @@
 				if(!s.features) {
 					s.features = {};
 					return false;
+				}
+				if(!s.features[key]) {
+					s.features[key] = true;
 				}
 				return s.features[key];
 			};
@@ -134,11 +172,9 @@
 					'</ul>' +
 					'<ul style="right: -5px;position: absolute;top: 15px;margin: 0;padding: 0;width: 50%;list-style-type: none;font-size: 16px;">' +
 					'<li style="font-weight: bold;">Messages:</li>' +
-					'<li><label><input type="checkbox" name="woot" data-greendj-settings="messages"> Woot</label></li>' +
-					'<li><label><input type="checkbox" name="grab" data-greendj-settings="messages"> Grab</label></li>' +
-					'<li><label><input type="checkbox" name="meh" data-greendj-settings="messages"> Meh</label></li>' +
-					'<li><label><input type="checkbox" name="login" data-greendj-settings="messages"> Login</label></li>' +
-					'<li><label><input type="checkbox" name="logout" data-greendj-settings="messages"> Logout</label></li>' +
+					'<li><label><input type="checkbox" name="userVote" data-greendj-settings="messages"> User vote (woot / meh)</label></li>' +
+					'<li><label><input type="checkbox" name="userJoin" data-greendj-settings="messages"> User join</label></li>' +
+					'<li><label><input type="checkbox" name="userLeave" data-greendj-settings="messages"> User leave</label></li>' +
 					'</ul>';
 			};
 
