@@ -1,11 +1,11 @@
 /**
- * green.js - a plug.dj plugin
+ * green.dj.js - a plug.dj plugin
  * @licence MIT
  * @author greeny
  */
 (function(){
 	if(typeof API === 'undefined') {
-		alert('You are not at plug.dj. Please use this bookmark at plug.dj.\n\nYou can find more info at greeny.github.io/green.dj');
+		alert('You are not at plug.dj. Please use this bookmark at plug.dj.\n\nYou can find more info at https://greeny.github.io/green.dj');
 	}
 	if(typeof window.greenDj === 'undefined') {
 		function GreenDjObject() {
@@ -71,6 +71,11 @@
 				if(this.featureEnabled('autoWoot')) {
 					/*this.woot();*/
 				}
+				if(data.lastPlay) {
+					this.info(data.lastPlay.dj.username + ' played ' + data.lastPlay.media.title + ' from ' + data.lastPlay.media.author + '(' + this.intToTime(data.lastPlay.media.duration) + ') ' +
+						'and received ' + data.lastPlay.score.positive + ' woots, ' + data.lastPlay.score.grabs + ' grabs and ' + data.lastPlay.media.negative + ' mehs.', 'nextSong');
+				}
+				this.info(data.dj.username + ' is playing ' + data.media.title + ' from ' + data.media.author + '(' + this.intToTime(data.media.duration) + ').', 'nextSong');
 			};
 
 			this.woot = function() {
@@ -103,6 +108,14 @@
 						$chat.scrollTop($chat.scrollTop() + $el.outerHeight(true));
 					/*}
 				}*/
+			};
+
+			this.intToTime = function(int) {
+				var hours = int % 3600;
+				var minutes = (int - (hours * 3600)) % 60;
+				var seconds = int - (hours * 3600) - (minutes * 60);
+
+				return hours + ':' + minutes + ':' + seconds;
 			};
 
 			/* SETTINGS */
