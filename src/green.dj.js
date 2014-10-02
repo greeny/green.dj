@@ -25,9 +25,8 @@
 				that.onUserLeave(user);
 			});
 
-			this.API.on(API.VOTE_UPDATE, function(user, vote) {
-				console.log(user);
-				that.onUserVote(user, vote);
+			this.API.on(API.VOTE_UPDATE, function(data) {
+				that.onUserVote(data.user, data.vote);
 			});
 
 			this.API.on(API.ADVANCE, function(data) {
@@ -53,7 +52,7 @@
 			};
 
 			this.onUserVote = function(user, vote) {
-				this.info(user.username + ' has ' + (vote === 1 ? 'wooted' : 'mehed') + ' your song!', 'userVote');
+				this.info(user.username + ' has ' + (vote === 1 ? '<b>Woot!</b>ed' : '<b>Meh!</b>ed') + ' this song!', 'userVote');
 			};
 
 			this.onAdvance = function(reason, data) {
