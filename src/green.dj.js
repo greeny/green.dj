@@ -66,7 +66,10 @@
 			/* SETTINGS */
 
 			this.init = function() {
-				$('#chat-header').find('.divider').after('<div class="chat-header-button" style="margin-left: 13px; margin-right: 0;" onclick="greenDj.onSettingsClick()"><i class="icon icon-settings-white"></i></div>');
+				$('#chat-header').find('.divider')
+					.after('<div class="chat-header-button" style="margin-left: 13px; margin-right: 0;" onclick="greenDj.onSettingsClick()" ' +
+						'onmouseover="$(this).toggleClass(\'icon-settings-grey icon-settings-white\')" onmouseout="$(this).toggleClass(\'icon-settings-grey icon-settings-white\')">' +
+						'<i class="icon icon-settings-white"></i></div>');
 				$('body [data-greendj-settings]').on('change', function(e) {
 					e.preventDefault();
 					that.onSettingsChange($(this));
