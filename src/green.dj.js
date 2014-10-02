@@ -29,7 +29,7 @@
 				that.onUserVote(data.user, data.vote);
 			});
 
-			this.API.on(API.VOTE_UPDATE, function(user) {
+			this.API.on(API.GRAB_UPDATE, function(user) {
 				that.onGrab(user);
 			});
 
@@ -56,7 +56,7 @@
 			};
 
 			this.onUserVote = function(user, vote) {
-				this.info(user.username + ' had ' + (vote === 1 ? '<span class="color: #90ad2f">Woot!</span>ed' : '<span class="color: #c42e3b;">Meh!</span>ed') + ' this song!', 'userVote');
+				this.info(user.username + ' had ' + (vote === 1 ? '<span style="color: #90ad2f">Woot!</span>ed' : '<span style="color: #c42e3b;">Meh!</span>ed') + ' this song!', 'userVote');
 			};
 
 			this.onGrab = function(user) {
