@@ -61,6 +61,7 @@
 			};
 
 			this.onGrab = function(user) {
+				console.log(user);
 				this.info(user.username + ' has <span style="color: #aa74ff">added</span> this song to his playlist.', 'userGrab');
 			};
 
