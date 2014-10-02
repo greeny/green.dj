@@ -112,8 +112,8 @@
 
 			this.intToTime = function(int) {
 				var hours = int / 3600;
-				var minutes = (int % 3600) / 60;
-				var seconds = int % 60;
+				var minutes = (int % 60) / 60;
+				var seconds = int % 3600;
 
 				return hours + ':' + minutes + ':' + seconds;
 			};
