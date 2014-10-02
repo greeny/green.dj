@@ -29,6 +29,10 @@
 				that.onUserVote(data.user, data.vote);
 			});
 
+			this.API.on(API.VOTE_UPDATE, function(user) {
+				that.onGrab(user);
+			});
+
 			this.API.on(API.ADVANCE, function(data) {
 				that.onAdvance('advance', data);
 			});
@@ -52,7 +56,11 @@
 			};
 
 			this.onUserVote = function(user, vote) {
-				this.info(user.username + ' has ' + (vote === 1 ? '<b>Woot!</b>ed' : '<b>Meh!</b>ed') + ' this song!', 'userVote');
+				this.info(user.username + ' had ' + (vote === 1 ? '<span class="color: #90ad2f">Woot!</span>ed' : '<span class="color: #c42e3b;">Meh!</span>ed') + ' this song!', 'userVote');
+			};
+
+			this.onGrab = function(user) {
+				this.info(user.username + ' has <span style="color: #aa74ff">added</span> this song to his playlist.', 'userGrab');
 			};
 
 			this.onAdvance = function(reason, data) {
