@@ -80,11 +80,11 @@
 			};
 
 			this.info = function(message, required) {
-				if(message) {
-					if(!(required && this.messageEnabled(required))) {
+				/*if(message) {
+					if(!(required && this.messageEnabled(required))) {*/
 						$("#chat-messages").append('<div class="message" style="padding-left: 25px;border-left: green 3px solid;">[<span style="color: green">green.dj</span>] ' + message + '</div>');
-					}
-				}
+					/*}
+				}*/
 			};
 
 			/* SETTINGS */
