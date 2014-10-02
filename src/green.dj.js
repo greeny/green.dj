@@ -73,7 +73,7 @@
 				}
 				if(data.lastPlay) {
 					this.info(data.lastPlay.dj.username + ' played ' + data.lastPlay.media.title + ' from ' + data.lastPlay.media.author + '(' + this.intToTime(data.lastPlay.media.duration) + ') ' +
-						'and received ' + data.lastPlay.score.positive + ' woots, ' + data.lastPlay.score.grabs + ' grabs and ' + data.lastPlay.media.negative + ' mehs.', 'nextSong');
+						'and received ' + data.lastPlay.score.positive + ' woots, ' + data.lastPlay.score.grabs + ' grabs and ' + data.lastPlay.score.negative + ' mehs.', 'nextSong');
 				}
 				this.info(data.dj.username + ' is playing ' + data.media.title + ' from ' + data.media.author + '(' + this.intToTime(data.media.duration) + ').', 'nextSong');
 			};
@@ -111,9 +111,9 @@
 			};
 
 			this.intToTime = function(int) {
-				var hours = int / 3600;
-				var minutes = (int % 60) / 60;
-				var seconds = int % 3600;
+				var hours = ~~(int / 3600);
+				var minutes = ~~((int % 3600) / 60);
+				var seconds = ~~(int % 60);
 
 				return hours + ':' + minutes + ':' + seconds;
 			};
