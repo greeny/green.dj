@@ -146,6 +146,7 @@
 					this.settings = {};
 				}
 
+				this.initAll();
 
 				this.info('green.dj version ' + this.version + ' loaded. Enjoy!');
 			};
@@ -214,6 +215,41 @@
 					'<li><label><input type="checkbox" name="userJoin" data-greendj-settings="messages"> User join</label></li>' +
 					'<li><label><input type="checkbox" name="userLeave" data-greendj-settings="messages"> User leave</label></li>' +
 					'</ul>';
+			};
+
+			/* INIT */
+
+			this.initAll = function() {
+				this.initStyles();
+				this.initMenus();
+			};
+
+			this.initMenus = function() {
+				$('body').append(
+					'<div class="green-dj">' +
+						'<div class="menu-btn" onclick="greenDj.toggleMenu();"><div class="menu-btn-inner">green.dj menu</div></div>' +
+						'<div class="menu-container"><div class="menu-container-inner">Some menu content</div></div>' +
+					'</div>'
+				);
+			};
+
+			this.initStyles = function() {
+				$('head').append([
+					'.green-dj .menu-btn {' +
+						'position: absolute; z-index: 100; bottom: 55px; height: 159px; width: 53px; text-align: center; vertical-align: bottom; line-height: 106px;' +
+						'white-space: nowrap; background-color: #202020; border-right: 1px solid #404040; border-top: 1px solid #404040; border-top-right-radius: 8px;' +
+						'box-shadow: inset -1px 1px #303030, 2px -2px 4px rgba(25,25,25,0.4); cursor: pointer;' +
+					'}',
+					'.green-dj .menu-btn-inner {transform: rotate(270deg); margin-top: 50px; margin-left: -5px;}',
+					'.green-dj .menu-container {' +
+						'position: absolute; top: 54px; bottom: 55px; left: 0; right: 0; margin-right: 345px; z-index: 1000; background-color: #202020; display: none;' +
+					'}',
+					'.green-dj .menu-container-inner {margin: 20px;}',
+				].join(''));
+			};
+
+			this.toggleMenu = function() {
+				$('.menu-btn, .menu-container').toggle();
 			};
 
 			this.init();
