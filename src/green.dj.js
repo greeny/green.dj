@@ -180,12 +180,12 @@
 						'.green-dj.menu-container .menu-close {float: right; font-size: 32px; color: gray; cursor: pointer;}',
 						'.green-dj.menu-container .menu-close:hover {color: lightgray;}',
 						'.green-dj.menu-container .menu-tabs {border-bottom: 1px solid gray; padding: 5px;}',
-						'.green-dj.menu-container .menu-tabs.tab {' +
+						'.green-dj.menu-container .menu-tabs .tab {' +
 							'margin: 10px; padding: 5px 15px; cursor: pointer; border-right: 1px solid gray; border-left: 1px solid gray;' +
 							'border-top: 1px solid gray; border-top-left-radius: 5px; border-top-right-radius: 5px;' +
 						'}',
-						'.green-dj.menu-container .menu-tabs:hover {background-color: #303030;}',
-						'.green-dj.menu-container .menu-tabs.active {border-bottom: 1px solid #202020;}',
+						'.green-dj.menu-container .menu-tabs .tab:hover {background-color: #303030;}',
+						'.green-dj.menu-container .menu-tabs .tab.active {border-bottom: 1px solid #202020;}',
 					'</style>'
 				].join(''));
 			};
