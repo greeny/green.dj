@@ -7,6 +7,9 @@
 	if(typeof API === 'undefined') {
 		alert('You are not at plug.dj. Please use this bookmark at plug.dj.\n\nYou can find more info at https://greeny.github.io/green.dj');
 	}
+	if(typeof $ === 'undefined') {
+		alert('This site does not have jQuery installed. Please try different one.');
+	}
 	if(typeof window.greenDj === 'undefined') {
 		function GreenDjObject() {
 			this.API = API;
@@ -38,11 +41,11 @@
 			});
 
 			this.API.on(API.USER_SKIP, function(data) {
-				that.onAdvance('skip', data);
+				//that.onAdvance('skip', data);
 			});
 
 			this.API.on(API.MOD_SKIP, function(data) {
-				that.onAdvance('forceSkip', data);
+				//that.onAdvance('forceSkip', data);
 			});
 
 			/* FUNCTIONALITY */
@@ -56,13 +59,11 @@
 			};
 
 			this.onUserVote = function(user, vote) {
-				console.log(vote);
 				this.info('<i class="icon icon-woot" style="width: 15px;background-position: ' + (vote === 1 ? '-217px' : '-181px') + ' -287px;left: 4px;"></i>' +
 					user.username + ' had ' + (vote === 1 ? '<span style="color: #90ad2f">Woot!</span>ed' : '<span style="color: #c42e3b;">Meh!</span>ed') + ' this song!', 'userVote');
 			};
 
 			this.onGrab = function(user) {
-				console.log(user);
 				this.info('<i class="icon icon-grab" style="width: 17px;background-position: -146px -287px;left: 4px;"></i>' +
 					user.username + ' has <span style="color: #aa74ff">added</span> this song to his playlist.', 'userGrab');
 			};
@@ -148,7 +149,17 @@
 				$('#app').append(
 					'<div class="green-dj menu-btn" onclick="greenDj.toggleMenu();"><div class="menu-btn-inner">green.dj menu</div></div>' +
 					'<div class="green-dj menu-container"><div class="menu-container-inner">' +
-						'<div class="menu-tabs"></div><div class="menu-close" onclick="greenDj.toggleMenu();">&times;</div>' +
+						'<div class="menu-tabs">' +
+							'<span class="tab" onclick="greenDj.switchTab(\'general\')">General</span>' +
+							'<span class="tab" onclick="greenDj.switchTab(\'widgets\')">Widgets</span>' +
+							'<span class="tab" onclick="greenDj.switchTab(\'about\')">About</span>' +
+						'</div>' +
+						'<div class="menu-close" onclick="greenDj.toggleMenu();">&times;</div>' +
+						'<div class="tab-content">' +
+							'<div data-greendj-tab="general">General</div>' +
+							'<div data-greendj-tab="widgets">Widgets</div>' +
+							'<div data-greendj-tab="settings">About</div>' +
+						'</div>' +
 					'</div></div>'
 				);
 			};
@@ -157,17 +168,24 @@
 				$('head').append([
 					'<style>',
 						'.green-dj.menu-btn {' +
-							'position: absolute; z-index: 100; bottom: 55px; height: 159px; width: 53px; text-align: center; vertical-align: bottom; line-height: 106px;' +
+							'position: absolute; z-index: 100; bottom: 54px; height: 159px; width: 53px; text-align: center; vertical-align: bottom; line-height: 106px;' +
 							'white-space: nowrap; background-color: #202020; border-right: 1px solid #404040; border-top: 1px solid #404040; border-top-right-radius: 8px;' +
 							'box-shadow: inset -1px 1px #303030, 2px -2px 4px rgba(25,25,25,0.4); cursor: pointer;' +
 						'}',
 						'.green-dj.menu-btn .menu-btn-inner {transform: rotate(270deg); margin-top: 50px; margin-left: -5px;}',
 						'.green-dj.menu-container {' +
-							'position: absolute; top: 54px; bottom: 55px; left: 0; right: 0; margin-right: 345px; z-index: 1000; background-color: #202020; display: none;' +
+							'position: absolute; top: 54px; bottom: 54px; left: 0; right: 0; margin-right: 345px; z-index: 1000; background-color: #202020; display: none;' +
 						'}',
 						'.green-dj.menu-container .menu-container-inner {margin: 20px;}',
 						'.green-dj.menu-container .menu-close {float: right; font-size: 32px; color: gray; cursor: pointer;}',
 						'.green-dj.menu-container .menu-close:hover {color: lightgray;}',
+						'.green-dj.menu-container .menu-tabs {border-bottom: 1px solid gray; padding: 5px;}',
+						'.green-dj.menu-container .menu-tabs.tab {' +
+							'margin: 10px; padding: 5px 15px; cursor: pointer; border-right: 1px solid gray; border-left: 1px solid gray;' +
+							'border-top: 1px solid gray; border-top-left-radius: 5px; border-top-right-radius: 5px;' +
+						'}',
+						'.green-dj.menu-container .menu-tabs:hover {background-color: #303030;}',
+						'.green-dj.menu-container .menu-tabs.active {border-bottom: 1px solid #202020;}',
 					'</style>'
 				].join(''));
 			};
