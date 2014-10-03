@@ -7,7 +7,7 @@
 	if(typeof API === 'undefined') {
 		alert('You are not at plug.dj. Please use this bookmark at plug.dj.\n\nYou can find more info at https://greeny.github.io/green.dj');
 	}
-	if(typeof $ === 'undefined') {
+	if(typeof jQuery === 'undefined') {
 		alert('This site does not have jQuery installed. Please try different one.');
 	}
 	if(typeof window.greenDj === 'undefined') {
@@ -69,9 +69,6 @@
 			};
 
 			this.onAdvance = function(reason, data) {
-				if(this.featureEnabled('autoWoot')) {
-					/*this.woot();*/
-				}
 				if(data.lastPlay) {
 					this.info(data.lastPlay.dj.username + ' played <i>' + data.lastPlay.media.title + '</i> from <i>' + data.lastPlay.media.author + '</i> (' + this.intToTime(data.lastPlay.media.duration) + ') ' +
 						'and received ' + data.lastPlay.score.positive + ' woots, ' + data.lastPlay.score.grabs + ' grabs and ' + data.lastPlay.score.negative + ' mehs.', 'nextSong');
@@ -98,17 +95,13 @@
 			};
 
 			this.info = function(message, required) {
-				/*if(message) {
-					if(!(required && this.messageEnabled(required))) {*/
-						var $el = $('<div class="message deletable" style="padding-left: 25px;border-left: green 3px solid;" onmouseover="$(this).find(\'.delete-button\').show();" onmouseout="$(this).find(\'.delete-button\').hide();">' +
-							'<div class="delete-button" style="display: none;" onclick="$(this).parent().remove()">Delete</div>' +
-							'[<span style="color: green">green.dj</span>] ' + message + '' +
-							'</div>');
-						var $chat = $("#chat-messages");
-						$chat.append($el);
-						$chat.scrollTop($chat.scrollTop() + $el.outerHeight(true));
-					/*}
-				}*/
+				var $el = $('<div class="message deletable" style="padding-left: 25px;border-left: green 3px solid;" onmouseover="$(this).find(\'.delete-button\').show();" onmouseout="$(this).find(\'.delete-button\').hide();">' +
+					'<div class="delete-button" style="display: none;" onclick="$(this).parent().remove()">Delete</div>' +
+					'[<span style="color: green">green.dj</span>] ' + message + '' +
+					'</div>');
+				var $chat = $("#chat-messages");
+				$chat.append($el);
+				$chat.scrollTop($chat.scrollTop() + $el.outerHeight(true));
 			};
 
 			this.intToTime = function(int) {
@@ -149,16 +142,16 @@
 				$('#app').append(
 					'<div class="green-dj menu-btn" onclick="greenDj.toggleMenu();"><div class="menu-btn-inner">green.dj menu</div></div>' +
 					'<div class="green-dj menu-container"><div class="menu-container-inner">' +
+						'<div class="menu-close" onclick="greenDj.toggleMenu();">&times;</div>' +
 						'<div class="menu-tabs">' +
-							'<span class="tab" onclick="greenDj.switchTab(\'general\')">General</span>' +
+							'<span class="tab active" onclick="greenDj.switchTab(\'general\')">General</span>' +
 							'<span class="tab" onclick="greenDj.switchTab(\'widgets\')">Widgets</span>' +
 							'<span class="tab" onclick="greenDj.switchTab(\'about\')">About</span>' +
 						'</div>' +
-						'<div class="menu-close" onclick="greenDj.toggleMenu();">&times;</div>' +
 						'<div class="tab-content">' +
-							'<div data-greendj-tab="general">General</div>' +
-							'<div data-greendj-tab="widgets">Widgets</div>' +
-							'<div data-greendj-tab="settings">About</div>' +
+							'<div class="panel active" data-greendj-tab="general">General</div>' +
+							'<div class="panel" data-greendj-tab="widgets">Widgets</div>' +
+							'<div class="panel" data-greendj-tab="settings">About</div>' +
 						'</div>' +
 					'</div></div>'
 				);
@@ -181,13 +174,31 @@
 						'.green-dj.menu-container .menu-close:hover {color: lightgray;}',
 						'.green-dj.menu-container .menu-tabs {border-bottom: 1px solid gray; padding: 5px;}',
 						'.green-dj.menu-container .menu-tabs .tab {' +
-							'margin: 10px; padding: 5px 15px; cursor: pointer; border-right: 1px solid gray; border-left: 1px solid gray;' +
+							'margin: 5px; padding: 5px 15px; cursor: pointer; border-right: 1px solid gray; border-left: 1px solid gray;' +
 							'border-top: 1px solid gray; border-top-left-radius: 5px; border-top-right-radius: 5px;' +
 						'}',
 						'.green-dj.menu-container .menu-tabs .tab:hover {background-color: #303030;}',
 						'.green-dj.menu-container .menu-tabs .tab.active {border-bottom: 1px solid #202020;}',
+						'.green-dj.menu-container .menu-tabs .tab.active:hover {background-color: #202020; cursor: default;}',
+						'.green-dj.menu-container .tabs-content {padding-top: 20px;}',
+						'.green-dj.menu-container .panel {display: none;}',
+						'.green-dj.menu-container .panel.active {display: block;}',
 					'</style>'
 				].join(''));
+			};
+
+			this.switchTab = function(newTab) {
+				$('[data-greendj-tab]').each(function() {
+					if($(this).data('greendj-tab') === newTab) {
+						if(!$(this).hasClass('active')) {
+							$(this).addClass('active');
+						}
+					} else {
+						if($(this).hasClass('active')) {
+							$(this).removeClass('active');
+						}
+					}
+				});
 			};
 
 			this.toggleMenu = function() {
