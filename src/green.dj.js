@@ -144,9 +144,9 @@
 					'<div class="green-dj menu-container"><div class="menu-container-inner">' +
 						'<div class="menu-close" onclick="greenDj.toggleMenu();">&times;</div>' +
 						'<div class="menu-tabs">' +
-							'<span class="tab active" onclick="greenDj.switchTab(\'general\')">General</span>' +
-							'<span class="tab" onclick="greenDj.switchTab(\'widgets\')">Widgets</span>' +
-							'<span class="tab" onclick="greenDj.switchTab(\'about\')">About</span>' +
+							'<span class="tab active" onclick="greenDj.switchTab($(this), \'general\')">General</span>' +
+							'<span class="tab" onclick="greenDj.switchTab($(this), \'widgets\')">Widgets</span>' +
+							'<span class="tab" onclick="greenDj.switchTab($(this), \'about\')">About</span>' +
 						'</div>' +
 						'<div class="tab-content">' +
 							'<div class="panel active" data-greendj-tab="general">General</div>' +
@@ -187,7 +187,13 @@
 				].join(''));
 			};
 
-			this.switchTab = function(newTab) {
+			this.switchTab = function(el, newTab) {
+				$('.green-dj.menu-container .tab').each(function() {
+					if($(this).hasClass('active')) {
+						$(this).removeClass('active');
+					}
+				});
+				el.addClass('active');
 				$('[data-greendj-tab]').each(function() {
 					if($(this).data('greendj-tab') === newTab) {
 						if(!$(this).hasClass('active')) {
