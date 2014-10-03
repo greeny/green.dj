@@ -225,7 +225,7 @@
 			};
 
 			this.initMenus = function() {
-				$('body').append(
+				$('#app').append(
 					'<div class="green-dj menu-btn" onclick="greenDj.toggleMenu();"><div class="menu-btn-inner">green.dj menu</div></div>' +
 					'<div class="green-dj menu-container"><div class="menu-container-inner">Some menu content</div></div>'
 				);
