@@ -246,7 +246,7 @@
 							'position: absolute; top: 54px; bottom: 55px; left: 0; right: 0; margin-right: 345px; z-index: 1000; background-color: #202020; display: none;' +
 						'}',
 						'.green-dj.menu-container .menu-container-inner {margin: 20px;}',
-						'.green-dj.menu-container .menu-close {float: left; font-size: 32px; color: gray; cursor: pointer;}',
+						'.green-dj.menu-container .menu-close {float: right; font-size: 32px; color: gray; cursor: pointer;}',
 						'.green-dj.menu-container .menu-close:hover {color: lightgray;}',
 					'</style>'
 				].join(''));
