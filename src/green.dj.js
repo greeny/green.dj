@@ -72,10 +72,10 @@
 					/*this.woot();*/
 				}
 				if(data.lastPlay) {
-					this.info(data.lastPlay.dj.username + ' played ' + data.lastPlay.media.title + ' from ' + data.lastPlay.media.author + '(' + this.intToTime(data.lastPlay.media.duration) + ') ' +
+					this.info(data.lastPlay.dj.username + ' played <i>' + data.lastPlay.media.title + '</i> from <i>' + data.lastPlay.media.author + '</i> (' + this.intToTime(data.lastPlay.media.duration) + ') ' +
 						'and received ' + data.lastPlay.score.positive + ' woots, ' + data.lastPlay.score.grabs + ' grabs and ' + data.lastPlay.score.negative + ' mehs.', 'nextSong');
 				}
-				this.info(data.dj.username + ' is playing ' + data.media.title + ' from ' + data.media.author + '(' + this.intToTime(data.media.duration) + ').', 'nextSong');
+				this.info(data.dj.username + ' is playing <i>' + data.media.title + '</i> from <i>' + data.media.author + '</i> (' + this.intToTime(data.media.duration) + ').', 'nextSong');
 			};
 
 			this.woot = function() {
