@@ -239,11 +239,11 @@
 						'white-space: nowrap; background-color: #202020; border-right: 1px solid #404040; border-top: 1px solid #404040; border-top-right-radius: 8px;' +
 						'box-shadow: inset -1px 1px #303030, 2px -2px 4px rgba(25,25,25,0.4); cursor: pointer;' +
 					'}',
-					'.green-dj.menu-btn-inner {transform: rotate(270deg); margin-top: 50px; margin-left: -5px;}',
+					'.green-dj.menu-btn .menu-btn-inner {transform: rotate(270deg); margin-top: 50px; margin-left: -5px;}',
 					'.green-dj.menu-container {' +
 						'position: absolute; top: 54px; bottom: 55px; left: 0; right: 0; margin-right: 345px; z-index: 1000; background-color: #202020; display: none;' +
 					'}',
-					'.green-dj.menu-container-inner {margin: 20px;}',
+					'.green-dj.menu-container .menu-container-inner {margin: 20px;}',
 					'</style>'
 				].join(''));
 			};
