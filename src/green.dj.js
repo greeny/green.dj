@@ -227,23 +227,27 @@
 			this.initMenus = function() {
 				$('#app').append(
 					'<div class="green-dj menu-btn" onclick="greenDj.toggleMenu();"><div class="menu-btn-inner">green.dj menu</div></div>' +
-					'<div class="green-dj menu-container"><div class="menu-container-inner">Some menu content</div></div>'
+					'<div class="green-dj menu-container"><div class="menu-container-inner">' +
+						'<div class="menu-tabs"></div><div class="menu-close" onclick="greenDj.toggleMenu();">&times;</div>' +
+					'</div></div>'
 				);
 			};
 
 			this.initStyles = function() {
 				$('head').append([
 					'<style>',
-					'.green-dj.menu-btn {' +
-						'position: absolute; z-index: 100; bottom: 55px; height: 159px; width: 53px; text-align: center; vertical-align: bottom; line-height: 106px;' +
-						'white-space: nowrap; background-color: #202020; border-right: 1px solid #404040; border-top: 1px solid #404040; border-top-right-radius: 8px;' +
-						'box-shadow: inset -1px 1px #303030, 2px -2px 4px rgba(25,25,25,0.4); cursor: pointer;' +
-					'}',
-					'.green-dj.menu-btn .menu-btn-inner {transform: rotate(270deg); margin-top: 50px; margin-left: -5px;}',
-					'.green-dj.menu-container {' +
-						'position: absolute; top: 54px; bottom: 55px; left: 0; right: 0; margin-right: 345px; z-index: 1000; background-color: #202020; display: none;' +
-					'}',
-					'.green-dj.menu-container .menu-container-inner {margin: 20px;}',
+						'.green-dj.menu-btn {' +
+							'position: absolute; z-index: 100; bottom: 55px; height: 159px; width: 53px; text-align: center; vertical-align: bottom; line-height: 106px;' +
+							'white-space: nowrap; background-color: #202020; border-right: 1px solid #404040; border-top: 1px solid #404040; border-top-right-radius: 8px;' +
+							'box-shadow: inset -1px 1px #303030, 2px -2px 4px rgba(25,25,25,0.4); cursor: pointer;' +
+						'}',
+						'.green-dj.menu-btn .menu-btn-inner {transform: rotate(270deg); margin-top: 50px; margin-left: -5px;}',
+						'.green-dj.menu-container {' +
+							'position: absolute; top: 54px; bottom: 55px; left: 0; right: 0; margin-right: 345px; z-index: 1000; background-color: #202020; display: none;' +
+						'}',
+						'.green-dj.menu-container .menu-container-inner {margin: 20px;}',
+						'.green-dj.menu-container .menu-close {float: left; font-size: 32px; color: gray; cursor: pointer;}',
+						'.green-dj.menu-container .menu-close:hover {color: lightgray;}',
 					'</style>'
 				].join(''));
 			};
