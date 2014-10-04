@@ -151,7 +151,7 @@
 						'<div class="tab-content">' +
 							'<div class="panel active" data-greendj-tab="general">General</div>' +
 							'<div class="panel" data-greendj-tab="widgets">Widgets</div>' +
-							'<div class="panel" data-greendj-tab="settings">About</div>' +
+							'<div class="panel" data-greendj-tab="about"><b>green.dj plugin.</b><br>Made by @greeny. Version ' + this.version + '</div>' +
 						'</div>' +
 					'</div></div>'
 				);
@@ -161,7 +161,7 @@
 				$('head').append([
 					'<style>',
 						'.green-dj.menu-btn {' +
-							'position: absolute; z-index: 100; bottom: 54px; height: 159px; width: 53px; text-align: center; vertical-align: bottom; line-height: 106px;' +
+							'position: absolute; bottom: 54px; height: 159px; width: 53px; text-align: center; vertical-align: bottom; line-height: 106px;' +
 							'white-space: nowrap; background-color: #202020; border-right: 1px solid #404040; border-top: 1px solid #404040; border-top-right-radius: 8px;' +
 							'box-shadow: inset -1px 1px #303030, 2px -2px 4px rgba(25,25,25,0.4); cursor: pointer;' +
 						'}',
@@ -180,7 +180,7 @@
 						'.green-dj.menu-container .menu-tabs .tab:hover {background-color: #303030;}',
 						'.green-dj.menu-container .menu-tabs .tab.active {border-bottom: 1px solid #202020;}',
 						'.green-dj.menu-container .menu-tabs .tab.active:hover {background-color: #202020; cursor: default;}',
-						'.green-dj.menu-container .tabs-content {padding-top: 20px;}',
+						'.green-dj.menu-container .tab-content {padding-top: 20px;}',
 						'.green-dj.menu-container .panel {display: none;}',
 						'.green-dj.menu-container .panel.active {display: block;}',
 					'</style>'
