@@ -121,21 +121,27 @@
 
 			/* SETTINGS */
 
+			this.saveSettings = function() {
+				localStorage.greenDj = JSON.stringify(this.settings);
+			};
+
+			this.loadSettings = function() {
+				this.settings = localStorage.greenDj ? JSON.parse(localStorage.greenDj) : {};
+			};
+
+			/* INIT */
+
 			this.init = function() {
 				if(typeof Storage === 'undefined') {
 					this.info('green.dj cannot be loaded, because your browser does not support localStorage.');
 					return;
 				}
-				this.initAll();
-
-				this.info('green.dj version ' + this.version + ' loaded. Enjoy!');
-			};
-
-			/* INIT */
-
-			this.initAll = function() {
+				this.loadSettings();
 				this.initStyles();
 				this.initMenus();
+				this.saveSettings();
+
+				this.info('green.dj version ' + this.version + ' loaded. Enjoy!');
 			};
 
 			this.initMenus = function() {
@@ -149,7 +155,7 @@
 							'<span class="tab" onclick="greenDj.switchTab($(this), \'about\')">About</span>' +
 						'</div>' +
 						'<div class="tab-content">' +
-							'<div class="panel active" data-greendj-tab="general">General</div>' +
+							'<div class="panel active" data-greendj-tab="general">' + this.createCheckbox('active', 'active', true) + '</div>' +
 							'<div class="panel" data-greendj-tab="widgets">Widgets</div>' +
 							'<div class="panel" data-greendj-tab="about"><b>green.dj plugin.</b><br>Made by @greeny. Version ' + this.version + '</div>' +
 						'</div>' +
@@ -170,7 +176,7 @@
 							'position: absolute; top: 54px; bottom: 54px; left: 0; right: 0; margin-right: 345px; z-index: 1000; background-color: #202020; display: none;' +
 						'}',
 						'.green-dj.menu-container .menu-container-inner {margin: 20px;}',
-						'.green-dj.menu-container .menu-close {float: right; font-size: 32px; color: gray; cursor: pointer;}',
+						'.green-dj.menu-container .menu-close {float: right; font-size: 32px; color: gray; cursor: pointer; margin-top: -10px;}',
 						'.green-dj.menu-container .menu-close:hover {color: lightgray;}',
 						'.green-dj.menu-container .menu-tabs {border-bottom: 1px solid gray; padding: 5px;}',
 						'.green-dj.menu-container .menu-tabs .tab {' +
@@ -209,6 +215,24 @@
 
 			this.toggleMenu = function() {
 				$('.menu-btn, .menu-container').toggle();
+			};
+
+			/* SETTINGS */
+
+			/* COMPONENTS */
+
+			/* TOGGLE SETTINGS */
+
+			this.createCheckbox = function(label, key, def) {
+				var val = this.settings[key] = this.settings[key] ? this.settings[key] : def;
+				return '<label onclick="greenDj.toggleCheckbox($(this));return false;"><input type="checkbox" name="' + key + '" ' + (val ? 'checked="checked"' : '') + '>' + label + '</label>';
+			};
+
+			this.toggleCheckbox = function($label) {
+				var $input = $label.find('input');
+				var key = $input.attr('name');
+				this.settings[key] = !this.settings[key];
+				$input.val(this.settings[key]);
 			};
 
 			this.init();
