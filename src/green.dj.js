@@ -191,8 +191,8 @@
 						'.green-dj.menu-container .tab-content {padding-top: 20px;}',
 						'.green-dj.menu-container .panel {display: none;}',
 						'.green-dj.menu-container .panel.active {display: block;}',
-						'.green-dj .checkbox {color: white; font-family: monospace; cursor: pointer;}',
-						'.green-dj .checkbox:hover {color: gray;}',
+						'.green-dj .checkbox {color: white; cursor: pointer;}',
+						'.green-dj .checkbox:hover {font-family: monospace; color: gray;}',
 					'</style>'
 				].join(''));
 			};
@@ -229,15 +229,16 @@
 
 			this.createCheckbox = function(label, key, def) {
 				var val = this.settings[key] = this.settings[key] ? this.settings[key] : def;
-				return '<span class="checkbox" onclick="greenDj.toggleCheckbox($(this));" data-greendj-key="' + key + '">[' +
-					'<span class="checkbox-inner">' + (val ? '*' : ' ') + '</span>] ' + label +
+				return '<span class="checkbox" onclick="greenDj.toggleCheckbox($(this));" data-greendj-key="' + key + '">' +
+					'<span class="checkbox-inner">' + (val ? '[*]' : '[ ]') + '</span> ' + label +
 					'</span>';
 			};
 
 			this.toggleCheckbox = function($input) {
 				var key = $input.data('greendj-key');
 				this.settings[key] = !this.settings[key];
-				$input.find('.checkbox-inner').html(this.settings[key] ? '*' : ' ');
+				$input.find('.checkbox-inner').html(this.settings[key] ? '[*]' : '[ ]');
+				this.saveSettings();
 			};
 
 			this.init();
