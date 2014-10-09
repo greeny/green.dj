@@ -192,7 +192,8 @@
 						'.green-dj.menu-container .panel {display: none;}',
 						'.green-dj.menu-container .panel.active {display: block;}',
 						'.green-dj .checkbox {color: white; cursor: pointer;}',
-						'.green-dj .checkbox:hover {font-family: monospace; color: gray;}',
+						'.green-dj .checkbox:hover {color: gray;}',
+						'.green-dj .checkbox-inner {font-family: monospace; color: gray;}',
 					'</style>'
 				].join(''));
 			};
@@ -228,7 +229,7 @@
 			/* TOGGLE SETTINGS */
 
 			this.createCheckbox = function(label, key, def) {
-				var val = this.settings[key] = this.settings[key] ? this.settings[key] : def;
+				var val = this.settings[key] = (typeof this.settings[key] !== 'undefined') ? this.settings[key] : def;
 				return '<span class="checkbox" onclick="greenDj.toggleCheckbox($(this));" data-greendj-key="' + key + '">' +
 					'<span class="checkbox-inner">' + (val ? '[*]' : '[ ]') + '</span> ' + label +
 					'</span>';
