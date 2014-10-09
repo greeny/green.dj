@@ -155,7 +155,9 @@
 							'<span class="tab" onclick="greenDj.switchTab($(this), \'about\')">About</span>' +
 						'</div>' +
 						'<div class="tab-content">' +
-							'<div class="panel active" data-greendj-tab="general">' + this.createCheckbox('active', 'active', true) + '</div>' +
+							'<div class="panel active" data-greendj-tab="general">' +
+								this.createCheckbox('active', 'active', true) + '<br>' +
+							'</div>' +
 							'<div class="panel" data-greendj-tab="widgets">Widgets</div>' +
 							'<div class="panel" data-greendj-tab="about"><b>green.dj plugin.</b><br>Made by @greeny. Version ' + this.version + '</div>' +
 						'</div>' +
@@ -189,6 +191,8 @@
 						'.green-dj.menu-container .tab-content {padding-top: 20px;}',
 						'.green-dj.menu-container .panel {display: none;}',
 						'.green-dj.menu-container .panel.active {display: block;}',
+						'.green-dj .checkbox {color: white; font-family: monospace; cursor: pointer;}',
+						'.green-dj .checkbox:hover {color: gray;}',
 					'</style>'
 				].join(''));
 			};
@@ -225,15 +229,15 @@
 
 			this.createCheckbox = function(label, key, def) {
 				var val = this.settings[key] = this.settings[key] ? this.settings[key] : def;
-				return '<label onclick="greenDj.toggleCheckbox($(this).find(\'input\'));return false;">' +
-					'<input onclick="greenDj.toggleCheckbox($(this));return false;" type="checkbox" name="' + key + '" ' + (val ? 'checked="checked"' : '') + '>' + label +
-					'</label>';
+				return '<span class="checkbox" onclick="greenDj.toggleCheckbox($(this));" data-greendj-key="' + key + '">[' +
+					'<span class="checkbox-inner">' + (val ? '*' : ' ') + '</span>] ' + label +
+					'</span>';
 			};
 
 			this.toggleCheckbox = function($input) {
-				var key = $input.attr('name');
+				var key = $input.data('greendj-key');
 				this.settings[key] = !this.settings[key];
-				$input.prop('checked', this.settings[key]);
+				$input.find('.checkbox-inner').html(this.settings[key] ? '*' : ' ');
 			};
 
 			this.init();
