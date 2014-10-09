@@ -225,11 +225,12 @@
 
 			this.createCheckbox = function(label, key, def) {
 				var val = this.settings[key] = this.settings[key] ? this.settings[key] : def;
-				return '<label onclick="greenDj.toggleCheckbox($(this));return false;"><input type="checkbox" name="' + key + '" ' + (val ? 'checked="checked"' : '') + '>' + label + '</label>';
+				return '<label onclick="greenDj.toggleCheckbox($(this).find(\'input\'));return false;">' +
+					'<input onclick="greenDj.toggleCheckbox($(this));return false;" type="checkbox" name="' + key + '" ' + (val ? 'checked="checked"' : '') + '>' + label +
+					'</label>';
 			};
 
-			this.toggleCheckbox = function($label) {
-				var $input = $label.find('input');
+			this.toggleCheckbox = function($input) {
 				var key = $input.attr('name');
 				this.settings[key] = !this.settings[key];
 				$input.prop('checked', this.settings[key]);
