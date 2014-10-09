@@ -232,7 +232,7 @@
 				var $input = $label.find('input');
 				var key = $input.attr('name');
 				this.settings[key] = !this.settings[key];
-				$input.attr('checked', this.settings[key] ? 'checked' : null);
+				$input.prop('checked', this.settings[key]);
 			};
 
 			this.init();
