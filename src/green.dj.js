@@ -193,7 +193,7 @@
 						'.green-dj.menu-container .panel.active {display: block;}',
 						'.green-dj .checkbox {color: white; cursor: pointer;}',
 						'.green-dj .checkbox:hover {color: gray;}',
-						'.green-dj .checkbox-inner {font-family: monospace; color: gray;}',
+						'.green-dj .checkbox-inner {font-family: monospace;}',
 					'</style>'
 				].join(''));
 			};
