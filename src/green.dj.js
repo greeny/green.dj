@@ -74,24 +74,27 @@
 						'and received ' + data.lastPlay.score.positive + ' woots, ' + data.lastPlay.score.grabs + ' grabs and ' + data.lastPlay.score.negative + ' mehs.', 'nextSong');
 				}
 				this.info(data.dj.username + ' is playing <i>' + data.media.title + '</i> from <i>' + data.media.author + '</i> (' + this.intToTime(data.media.duration) + ').', 'nextSong');
+				if(this.settings.autoWoot) {
+					this.woot();
+				}
 			};
 
 			this.woot = function() {
 				setTimeout(function() {
 					$('#woot').click();
-				}, 2000);
+				}, 4500);
 			};
 
 			this.grab = function() {
 				setTimeout(function() {
 					$('#grab').click();
-				}, 2000);
+				}, 4500);
 			};
 
 			this.meh = function() {
 				setTimeout(function() {
 					$('#meh').click();
-				}, 2000);
+				}, 4500);
 			};
 
 			this.info = function(message, required) {
@@ -156,10 +159,11 @@
 						'</div>' +
 						'<div class="tab-content">' +
 							'<div class="panel active" data-greendj-tab="general">' +
-								this.createCheckbox('active', 'active', true) + '<br>' +
+								this.createCheckbox('autoWoot', 'AutoWoot - Automatically Woot! every song', true) + '<br>' +
+								this.createCheckbox('autoJoin', 'AutoJoin - Automatically join wait list when possible', true) + '<br>' +
 							'</div>' +
 							'<div class="panel" data-greendj-tab="widgets">Widgets</div>' +
-							'<div class="panel" data-greendj-tab="about"><b>green.dj plugin.</b><br>Made by @greeny. Version ' + this.version + '</div>' +
+							'<div class="panel" data-greendj-tab="about"><b>green.dj plugin.</b><br>Made by @greeny-cz. Version ' + this.version + '</div>' +
 						'</div>' +
 					'</div></div>'
 				);
@@ -193,7 +197,10 @@
 						'.green-dj.menu-container .panel.active {display: block;}',
 						'.green-dj .checkbox {color: white; cursor: pointer;}',
 						'.green-dj .checkbox:hover {color: gray;}',
-						'.green-dj .checkbox-inner {font-family: monospace;}',
+						'.green-dj .checkbox-inner {' +
+							'font-family: monospace; border: 1px solid white; display: inline-block; width: 14px; height: 14px; line-height: 13px; font-size: 14px;' +
+							'vertical-align: middle; text-align: center; border-radius: 50%; margin-right: 5px;' +
+						'}',
 					'</style>'
 				].join(''));
 			};
@@ -228,17 +235,17 @@
 
 			/* TOGGLE SETTINGS */
 
-			this.createCheckbox = function(label, key, def) {
+			this.createCheckbox = function(key, label, def) {
 				var val = this.settings[key] = (typeof this.settings[key] !== 'undefined') ? this.settings[key] : def;
 				return '<span class="checkbox" onclick="greenDj.toggleCheckbox($(this));" data-greendj-key="' + key + '">' +
-					'<span class="checkbox-inner">' + (val ? '[*]' : '[ ]') + '</span> ' + label +
+					'<span class="checkbox-inner">' + (val ? 'x' : '') + '</span> ' + label +
 					'</span>';
 			};
 
 			this.toggleCheckbox = function($input) {
 				var key = $input.data('greendj-key');
 				this.settings[key] = !this.settings[key];
-				$input.find('.checkbox-inner').html(this.settings[key] ? '[*]' : '[ ]');
+				$input.find('.checkbox-inner').html(this.settings[key] ? 'x' : '');
 				this.saveSettings();
 			};
 
