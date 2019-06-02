@@ -81,20 +81,20 @@
 
 			this.woot = function() {
 				setTimeout(function() {
-					$('#woot').click();
-				}, 4500);
+					$('.room-controls .btn-like').click();
+				}, 1000);
 			};
 
 			this.grab = function() {
 				setTimeout(function() {
-					$('#grab').click();
-				}, 4500);
+					$('.room-controls .btn-playlist').click();
+				}, 1000);
 			};
 
 			this.meh = function() {
 				setTimeout(function() {
-					$('#meh').click();
-				}, 4500);
+					$('.room-controls .btn-meh').click();
+				}, 1000);
 			};
 
 			this.info = function(message, required) {
@@ -173,13 +173,13 @@
 				$('head').append([
 					'<style>',
 						'.green-dj.menu-btn {' +
-							'position: absolute; bottom: 54px; height: 159px; width: 53px; text-align: center; vertical-align: bottom; line-height: 106px;' +
+							'position: absolute; left: 50px; bottom: 54px; height: 159px; width: 53px; text-align: center; vertical-align: bottom; line-height: 106px;' +
 							'white-space: nowrap; background-color: #202020; border-right: 1px solid #404040; border-top: 1px solid #404040; border-top-right-radius: 8px;' +
 							'box-shadow: inset -1px 1px #303030, 2px -2px 4px rgba(25,25,25,0.4); cursor: pointer;' +
 						'}',
 						'.green-dj.menu-btn .menu-btn-inner {transform: rotate(270deg); margin-top: 50px; margin-left: -5px;}',
 						'.green-dj.menu-container {' +
-							'position: absolute; top: 54px; bottom: 54px; left: 0; right: 0; margin-right: 345px; z-index: 1000; background-color: #202020; display: none;' +
+							'position: absolute; top: 50px; bottom: 60px; left: 0; right: 0; margin-right: 345px; z-index: 1000; background-color: #202020; display: none;' +
 						'}',
 						'.green-dj.menu-container .menu-container-inner {margin: 20px;}',
 						'.green-dj.menu-container .menu-close {float: right; font-size: 32px; color: gray; cursor: pointer; margin-top: -10px;}',
